@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: foo-service
+
+grpc:
+  client:
+    bar-service-client:
+      address: discovery:///bar-service
+      negotiationType: plaintext
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${POD_NAME:localhost}:${server.port:8080}
+  client:
+    service-url:
+      default-zone: http://${EUREKA_HOST:localhost}:${EUREKA_PORT:8761}/eureka/
